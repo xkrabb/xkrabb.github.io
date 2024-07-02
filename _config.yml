@@ -3,10 +3,10 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
+title: 博客
 subtitle: ""
 description: ""
-keywords: front end
+keywords: front-end
 author: xk
 language: zh-CN
 timezone: ""

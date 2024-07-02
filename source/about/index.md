@@ -1,6 +1,6 @@
 ---
-title: About me
+title: 关于我
 date: 2024-07-01 23:20:26
 ---
 
-about
+挂个简历，简历生成中。。。
