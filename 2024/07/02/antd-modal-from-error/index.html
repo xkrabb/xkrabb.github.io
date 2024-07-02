@@ -19,24 +19,30 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="博客">
-<meta property="og:url" content="http://example.com/archives/page/3/index.html">
+    <meta name="description" content="现象使用 AntD 组件，如果 Modal 弹框使用 Form 表单组件容易提示： 12Warning: Instance created by useForm is not connected to any Form element.Forget to pass form prop?">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AntD组件在modal内，Form警告警告情况">
+<meta property="og:url" content="http://example.com/2024/07/02/antd-modal-from-error/index.html">
 <meta property="og:site_name" content="博客">
+<meta property="og:description" content="现象使用 AntD 组件，如果 Modal 弹框使用 Form 表单组件容易提示： 12Warning: Instance created by useForm is not connected to any Form element.Forget to pass form prop?">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://github.com/xkrabb/xkrabb.github.io/assets/8550870/6e8828ab-e44b-4788-9e7e-7468810c11f3">
+<meta property="article:published_time" content="2024-07-02T12:27:25.000Z">
+<meta property="article:modified_time" content="2024-07-02T14:38:15.324Z">
 <meta property="article:author" content="xk">
 <meta property="article:tag" content="front-end">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/xkrabb/xkrabb.github.io/assets/8550870/6e8828ab-e44b-4788-9e7e-7468810c11f3">
 
 
-<link rel="canonical" href="http://example.com/archives/page/3/">
+<link rel="canonical" href="http://example.com/2024/07/02/antd-modal-from-error/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"archives/page/3/index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2024/07/02/antd-modal-from-error/","path":"2024/07/02/antd-modal-from-error/","title":"AntD组件在modal内，Form警告警告情况"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>归档 | 博客</title>
+<title>AntD组件在modal内，Form警告警告情况 | 博客</title>
   
 
 
@@ -69,7 +75,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">博客</h1>
+      <p class="site-title">博客</p>
       <i class="logo-line"></i>
     </a>
   </div>
@@ -95,7 +101,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -108,6 +114,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%8E%B0%E8%B1%A1"><span class="nav-number">1.</span> <span class="nav-text">现象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8E%9F%E5%9B%A0"><span class="nav-number">2.</span> <span class="nav-text">原因</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%84%E7%90%86%E6%96%B9%E5%BC%8F"><span class="nav-number">3.</span> <span class="nav-text">处理方式</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -142,175 +149,100 @@
 
     </div>
 
-    <div class="main-inner archive posts-collapse">
+    <div class="main-inner post posts-expand">
 
 
   
-  
-  
-  <div class="post-block">
-    <div class="post-content">
-      <div class="collection-title">
-        <span class="collection-header">嗯..! 目前共计 27 篇日志。 继续努力。</span>
-      </div>
 
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/07/02/antd-modal-from-error/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="xk">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="AntD组件在modal内，Form警告警告情况 | 博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          AntD组件在modal内，Form警告警告情况
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
       
-    <div class="collection-year">
-      <span class="collection-header">2017<span class="collection-year-count">22</span></span>
+
+      <time title="创建时间：2024-07-02 20:27:25 / 修改时间：22:38:15" itemprop="dateCreated datePublished" datetime="2024-07-02T20:27:25+08:00">2024-07-02</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h4 id="现象"><a href="#现象" class="headerlink" title="现象"></a>现象</h4><p>使用 AntD 组件，如果 Modal 弹框使用 Form 表单组件容易提示：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Warning</span>: <span class="title class_">Instance</span> created by useForm is not connected to any <span class="title class_">Form</span> element.</span><br><span class="line"><span class="title class_">Forget</span> to pass form prop?</span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+<h4 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h4><p>一般情况 Form 在 Modal 内使用不会有问题，但是如果在 modal 弹框展示前，提前使用了 form 对象属性，就会有 Form 组件未关联 form 实例属性的警告。如下示意代码（仅演示，不具实用性）</p>
+<p><img src="https://github.com/xkrabb/xkrabb.github.io/assets/8550870/6e8828ab-e44b-4788-9e7e-7468810c11f3" alt="image"></p>
+<h4 id="处理方式"><a href="#处理方式" class="headerlink" title="处理方式"></a>处理方式</h4><ul>
+<li>强制 Form 渲染，Modal 组件提供 forceRender 属性，强制弹框内组件渲染。（但不会显示）</li>
+<li>不要提前使用 from 实例属性，如上截图，应该避免 form 作为依赖。</li>
+<li>错误信息应该是在值更新才会处理，所以更好的方式是在 onValueChange 回调函数里获取；</li>
+<li>如果真要提前获取错误信息，那也是应该依赖 modal 的 open 状态，在打开之后再获取；</li>
+</ul>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2017-02-11T16:59:22+08:00"
-              content="2017-02-11">
-          02-11
-        </time>
-      </div>
+    
+    
+    
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2017/02/11/ES6-4/" itemprop="url">
-            <span itemprop="name">正则的扩展--笔记</span>
-          </a>
-      </div>
+    <footer class="post-footer">
 
-      
-    </header>
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2018/05/26/%E9%87%8D%E6%9E%84-%E7%AC%94%E8%AE%B0/" rel="prev" title="重构--笔记">
+                  <i class="fa fa-angle-left"></i> 重构--笔记
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
   </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2017-02-10T19:10:36+08:00"
-              content="2017-02-10">
-          02-10
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2017/02/10/ES6-3/" itemprop="url">
-            <span itemprop="name">字符串的扩展--笔记</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2017-02-09T19:41:48+08:00"
-              content="2017-02-09">
-          02-09
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2017/02/09/ES6-2/" itemprop="url">
-            <span itemprop="name">变量解构和赋值--笔记</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2017-02-09T16:52:43+08:00"
-              content="2017-02-09">
-          02-09
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2017/02/09/ES6-1/" itemprop="url">
-            <span itemprop="name">let 和 const 声明--笔记</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-    <div class="collection-year">
-      <span class="collection-header">2016<span class="collection-year-count">3</span></span>
-    </div>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2016-06-28T17:23:47+08:00"
-              content="2016-06-28">
-          06-28
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2016/06/28/Git-syntax/" itemprop="url">
-            <span itemprop="name">Git syntax</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2016-06-28T16:52:43+08:00"
-              content="2016-06-28">
-          06-28
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2016/06/28/sublime-hot-key/" itemprop="url">
-            <span itemprop="name">sublime hot key</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2016-06-28T16:43:07+08:00"
-              content="2016-06-28">
-          06-28
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2016/06/28/markdown-syntax/" itemprop="url">
-            <span itemprop="name">markdown syntax</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
+</div>
 
 
-    </div>
-  </div>
-  
-  
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/archives/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><span class="page-number current">3</span>
-  </nav>
+
+
+
 
 </div>
   </main>
