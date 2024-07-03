@@ -27,7 +27,7 @@
 <meta property="og:description" content="从用户体验上来讲，站点切换页面过程中不建议弹出多个浏览器标签页，这样会分散用户注意力，增加用户切换标签的操作成本。再好的交互规范，也抗不住产品经理或交互设计师的脑洞大开，在同一个站点多标签访问的时候，标签页间的通信不可避免。下面对几种常见方式，做个比较。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-07-03T11:31:01.000Z">
-<meta property="article:modified_time" content="2024-07-03T11:34:19.113Z">
+<meta property="article:modified_time" content="2024-07-03T11:36:27.004Z">
 <meta property="article:author" content="xk">
 <meta property="article:tag" content="front-end">
 <meta name="twitter:card" content="summary">
@@ -188,7 +188,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2024-07-03 19:31:01 / 修改时间：19:34:19" itemprop="dateCreated datePublished" datetime="2024-07-03T19:31:01+08:00">2024-07-03</time>
+      <time title="创建时间：2024-07-03 19:31:01 / 修改时间：19:36:27" itemprop="dateCreated datePublished" datetime="2024-07-03T19:31:01+08:00">2024-07-03</time>
     </span>
 
   
@@ -206,19 +206,23 @@
 <h4 id="方式一：LocalStorage"><a href="#方式一：LocalStorage" class="headerlink" title="方式一：LocalStorage"></a>方式一：LocalStorage</h4><p>因为相同域名下，localStorage 数据是可以共享，而且是单例。所以利用 localStorage 作为中介，可以实现标签间通信。所幸的是 localStorage 在 setItem 的时候，会触发 storage 事件，那么我们只要在通信双方都监听上该事件，就可以愉快的通信的了。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// 发送方</span><br><span class="line">function postMsg(info:string) &#123;</span><br><span class="line">  localStorage.setItem(&#x27;channeld&#x27;,info)</span><br><span class="line">&#125;</span><br><span class="line">// 接收方</span><br><span class="line">function receiveMsg(callback: (info:string) =&gt; void) &#123;</span><br><span class="line">  window.addEventListener(&#x27;storage&#x27;, function(event)&#123;</span><br><span class="line">    if(event.key ===&#x27;channelId&#x27;) &#123;</span><br><span class="line">      callback(event.newValue)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>优点：简单；接收方离线，消息不丢失，接收方上线后可以决定是否处理消息<br>缺点：使用大小有限制 5m（也不是什么大问题），stroage 只能放字符串，所以消息存之前需要序列化</p>
+<p>优点：简单；接收方离线，消息不丢失，接收方上线后可以决定是否处理消息</p>
+<p>缺点：使用大小有限制 5m（也不是什么大问题），stroage 只能放字符串，所以消息存之前需要序列化</p>
 <h4 id="方式二：BroadcastChannel"><a href="#方式二：BroadcastChannel" class="headerlink" title="方式二：BroadcastChannel"></a>方式二：BroadcastChannel</h4><p>BroadcastChannel 对象，顾名思义是以广播信息的通信，它创建的通信实例（相同参数创建的会被当作是同一个通信通道，所以不同标签下创建的通道可以相互通信），只要是订阅了消息的，都可以接收到。当然上述的 localStorage 可以看做的广播的方式通信的。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// 发送接收都需要</span><br><span class="line">const bc = new BroadcastChannel(&quot;channelId&quot;);</span><br><span class="line"></span><br><span class="line">// 发送方</span><br><span class="line">bc.postMessage(info: any);</span><br><span class="line">// 接收方</span><br><span class="line">bc.onmessage(function(event)&#123;</span><br><span class="line">  const info = event.data</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
-<p>优点: 对传输的数据类型没有要求，使用方便<br>缺点：旧的浏览器不能使用</p>
+<p>优点: 对传输的数据类型没有要求，使用方便</p>
+<p>缺点：旧的浏览器不能使用</p>
 <h4 id="方式三：postMessage"><a href="#方式三：postMessage" class="headerlink" title="方式三：postMessage"></a>方式三：postMessage</h4><p>虽然 postMessage 可以实现跨标签通信，但是它还是利用同一个 tab 下的 window 宿主对象实现的。也就是说，消息发送方需要消息接收方的的宿主对象。比如父窗口打开子窗口：那么父窗口通过 window.open 的返回值，子窗口的 window 对象；子窗口直接通过 opener 就可以获取到父窗口的 window 对象。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">cWindow = window.open(url)</span><br><span class="line"></span><br><span class="line">// 父窗口发送</span><br><span class="line">cWindow.postMessage(info, /* 可选域名参数 */)</span><br><span class="line"></span><br><span class="line">// 子窗口接收</span><br><span class="line">window.addEventListener(&#x27;message&#x27;, function(event)&#123;</span><br><span class="line">    // 有必要可以判断来域名来源 event.origin</span><br><span class="line">    const info = event.data</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
-<p>优点：数据类型没要求，通信是通过同一个 window 对象实现的，所以对域名没有要求，可以实现跨域通信<br>缺点：需要找到通信方的 window 对象，比较麻烦，特别的多级打开的窗口。</p>
+<p>优点：数据类型没要求，通信是通过同一个 window 对象实现的，所以对域名没有要求，可以实现跨域通信</p>
+<p>缺点：需要找到通信方的 window 对象，比较麻烦，特别的多级打开的窗口。</p>
 <h4 id="方式四：SharedWorker-API"><a href="#方式四：SharedWorker-API" class="headerlink" title="方式四：SharedWorker API"></a>方式四：SharedWorker API</h4><p>利用共享的线程实现，类似 BroadcastChannel，它是创建了一个可以跨标签的线程实现的消息传递。创建 SharedWorker 实例时候需要制定 worker 脚本（相同脚本文件参数会创建的是同一个 worker）。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">// 发送接收都需要</span><br><span class="line">const worker = new SharedWorker(&#x27;shareWorker.js&#x27;)</span><br><span class="line"></span><br><span class="line">// 发送方</span><br><span class="line">worker.port.possMessage(&#123;type:&#x27;&#x27;, info: &#x27;&#x27;&#125;)</span><br><span class="line">// 接收方</span><br><span class="line">worker.port.onmessage(function(event)&#123;</span><br><span class="line">  const info = event.data</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">// shareWorker.js</span><br><span class="line">const connections = [];</span><br><span class="line"></span><br><span class="line">onconnect = function (event) &#123;</span><br><span class="line">  var port = event.ports[0];</span><br><span class="line">  connections.push(port);</span><br><span class="line"></span><br><span class="line">  port.onmessage = function (event) &#123;</span><br><span class="line">    connections.forEach(function (conn) &#123;</span><br><span class="line">      if (conn !== port) &#123;</span><br><span class="line">        conn.postMessage(event.data);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  port.start();</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
-<p>优点：通信方式更灵活（复杂）<br>缺点：旧的浏览器不能使用，需要额外 woker 脚本</p>
+<p>优点：通信方式更灵活（复杂）</p>
+<p>缺点：旧的浏览器不能使用，需要额外 woker 脚本</p>
 
     </div>
 
