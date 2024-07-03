@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="默认参数 基本用法  12345&#x2F;&#x2F; 默认参数不能重复用let，const声明function Point(x &#x3D; 0, y &#x3D; 0) &#123;  this.x &#x3D; x;  this.y &#x3D; y;&#125;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="函数的扩展--笔记">
+<meta property="og:url" content="http://example.com/2017/02/14/before-2024/ES6-7/index.html">
+<meta property="og:site_name" content="博客">
+<meta property="og:description" content="默认参数 基本用法  12345&#x2F;&#x2F; 默认参数不能重复用let，const声明function Point(x &#x3D; 0, y &#x3D; 0) &#123;  this.x &#x3D; x;  this.y &#x3D; y;&#125;">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2017-02-14T13:31:31.000Z">
+<meta property="article:modified_time" content="2024-07-01T14:46:30.349Z">
+<meta property="article:author" content="xk">
+<meta property="article:tag" content="ES6">
+<meta property="article:tag" content="笔记">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2017/02/14/before-2024/ES6-7/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2017/02/14/before-2024/ES6-7/","path":"2017/02/14/before-2024/ES6-7/","title":"函数的扩展--笔记"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>函数的扩展--笔记 | 博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%BB%98%E8%AE%A4%E5%8F%82%E6%95%B0"><span class="nav-number">1.</span> <span class="nav-text">默认参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#reset%E5%8F%82%E6%95%B0"><span class="nav-number">2.</span> <span class="nav-text">reset参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%89%A9%E5%B1%95%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">3.</span> <span class="nav-text">扩展运算符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%A5%E6%A0%BC%E6%A8%A1%E5%BC%8F"><span class="nav-number">4.</span> <span class="nav-text">严格模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#name%E5%B1%9E%E6%80%A7"><span class="nav-number">5.</span> <span class="nav-text">name属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0"><span class="nav-number">6.</span> <span class="nav-text">箭头函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B0%BE%E8%B0%83%E7%94%A8%E4%BC%98%E5%8C%96"><span class="nav-number">7.</span> <span class="nav-text">尾调用优化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0%E7%9A%84%E5%B0%BE%E9%80%97%E5%8F%B7"><span class="nav-number">8.</span> <span class="nav-text">函数参数的尾逗号</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">xk</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2017/02/14/before-2024/ES6-7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="xk">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="函数的扩展--笔记 | 博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          函数的扩展--笔记
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2017-02-14 21:31:31" itemprop="dateCreated datePublished" datetime="2017-02-14T21:31:31+08:00">2017-02-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-07-01 22:46:30" itemprop="dateModified" datetime="2024-07-01T22:46:30+08:00">2024-07-01</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h4 id="默认参数"><a href="#默认参数" class="headerlink" title="默认参数"></a>默认参数</h4><ul>
+<li>基本用法</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 默认参数不能重复用let，const声明</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Point</span>(<span class="params">x = <span class="number">0</span>, y = <span class="number">0</span></span>) &#123;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">x</span> = x;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">y</span> = y;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+<ul>
+<li>结构与默认结合</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">foo</span>(<span class="params">&#123;x, y = <span class="number">5</span>&#125;</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(x, y);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">foo</span>(&#123;&#125;) <span class="comment">// undefined, 5</span></span><br><span class="line"><span class="title function_">foo</span>(&#123;<span class="attr">x</span>: <span class="number">1</span>&#125;) <span class="comment">// 1, 5</span></span><br><span class="line"><span class="title function_">foo</span>(&#123;<span class="attr">x</span>: <span class="number">1</span>, <span class="attr">y</span>: <span class="number">2</span>&#125;) <span class="comment">// 1, 2</span></span><br><span class="line"><span class="title function_">foo</span>() <span class="comment">// TypeError: Cannot read property &#x27;x&#x27; of undefined</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>默认参数位置，设置默认值参数尽量靠前。</p>
+</li>
+<li><p>函数的<code>length</code>，返回没有指定默认值参数个数，默认值后面的参数也不计算长度</p>
+</li>
+<li><p>作用域，设置默认值时候，参数会形成单独作用域，等到初始化结束。</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">f</span>(<span class="params">x, y = x</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(y);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">f</span>(<span class="number">2</span>) <span class="comment">// 2</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> x = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">f</span>(<span class="params">y = x</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> x = <span class="number">2</span>;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(y);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">f</span>() <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>应用（参数必填）</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">throwIfMissing</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&#x27;Missing parameter&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">foo</span>(<span class="params">mustBeProvided = throwIfMissing()</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> mustBeProvided;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">foo</span>()</span><br><span class="line"><span class="comment">// Error: Missing parameter</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="reset参数"><a href="#reset参数" class="headerlink" title="reset参数"></a>reset参数</h4><ul>
+<li><code>reset</code>参数是形式(<code>...变量名</code>)，用于获取多余参数，而不需要<code>arguments</code>对象，注意<code>reset</code>后不能有其他参数</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">add</span>(<span class="params">...values</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> sum = <span class="number">0</span>;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> val <span class="keyword">of</span> values) &#123;</span><br><span class="line">    sum += val;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">add</span>(<span class="number">2</span>, <span class="number">5</span>, <span class="number">3</span>) <span class="comment">// 10</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="扩展运算符"><a href="#扩展运算符" class="headerlink" title="扩展运算符"></a>扩展运算符</h4><ul>
+<li><code>...</code>：扩展运算符，将数组转成用逗号分隔的参数序列。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">add</span>(<span class="params">x, y</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> x + y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> numbers = [<span class="number">4</span>, <span class="number">38</span>];</span><br><span class="line"><span class="title function_">add</span>(...numbers) <span class="comment">// 42</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ES5的写法</span></span><br><span class="line"><span class="title class_">Math</span>.<span class="property">max</span>.<span class="title function_">apply</span>(<span class="literal">null</span>, [<span class="number">14</span>, <span class="number">3</span>, <span class="number">77</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment">// ES6的写法</span></span><br><span class="line"><span class="title class_">Math</span>.<span class="title function_">max</span>(...[<span class="number">14</span>, <span class="number">3</span>, <span class="number">77</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment">// 等同于</span></span><br><span class="line"><span class="title class_">Math</span>.<span class="title function_">max</span>(<span class="number">14</span>, <span class="number">3</span>, <span class="number">77</span>);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ES5的写法</span></span><br><span class="line"><span class="keyword">var</span> arr1 = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>];</span><br><span class="line"><span class="keyword">var</span> arr2 = [<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"><span class="title class_">Array</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">push</span>.<span class="title function_">apply</span>(arr1, arr2);</span><br><span class="line"></span><br><span class="line"><span class="comment">// ES6的写法</span></span><br><span class="line"><span class="keyword">var</span> arr1 = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>];</span><br><span class="line"><span class="keyword">var</span> arr2 = [<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line">arr1.<span class="title function_">push</span>(...arr2);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>扩展的应用</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ES5 合并数组</span></span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>].<span class="title function_">concat</span>(more)</span><br><span class="line"><span class="comment">// ES6</span></span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, ...more]</span><br><span class="line"></span><br><span class="line"><span class="comment">// ES5 与解构赋值结合</span></span><br><span class="line">a = list[<span class="number">0</span>], rest = list.<span class="title function_">slice</span>(<span class="number">1</span>)</span><br><span class="line"><span class="comment">// ES6</span></span><br><span class="line">[a, ...rest] = list</span><br><span class="line"></span><br><span class="line"><span class="comment">// 函数返回值</span></span><br><span class="line"><span class="keyword">var</span> dateFields = <span class="title function_">readDateFields</span>(database);</span><br><span class="line"><span class="keyword">var</span> d = <span class="keyword">new</span> <span class="title class_">Date</span>(...dateFields);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 字符串</span></span><br><span class="line">[...<span class="string">&#x27;hello&#x27;</span>]</span><br><span class="line"><span class="comment">// [ &quot;h&quot;, &quot;e&quot;, &quot;l&quot;, &quot;l&quot;, &quot;o&quot; ]，不用split(&#x27;)转数组</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 对于类数组对象，需要`Array.from()`转成数组再用扩展</span></span><br><span class="line"><span class="comment">// 对于数据结构是`Iterator`的接口都可以使用扩展</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="严格模式"><a href="#严格模式" class="headerlink" title="严格模式"></a>严格模式</h4><ul>
+<li>规定只要函数参数使用了<code>默认值、解构赋值、或者扩展运算符</code>，那么函数内部就不能显式设定为严格模式，否则会报错。</li>
+</ul>
+<h4 id="name属性"><a href="#name属性" class="headerlink" title="name属性"></a>name属性</h4><ul>
+<li>返回函数名</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> f = <span class="keyword">function</span> (<span class="params"></span>) &#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ES5</span></span><br><span class="line">f.<span class="property">name</span> <span class="comment">// &quot;&quot;</span></span><br><span class="line"><span class="comment">// ES6</span></span><br><span class="line">f.<span class="property">name</span> <span class="comment">// &quot;f&quot;</span></span><br><span class="line"></span><br><span class="line">(<span class="keyword">new</span> <span class="title class_">Function</span>).<span class="property">name</span> <span class="comment">// &quot;anonymous&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// bind返回的函数，name属性值会加上bound</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">foo</span>(<span class="params"></span>) &#123;&#125;;</span><br><span class="line">foo.<span class="title function_">bind</span>(&#123;&#125;).<span class="property">name</span> <span class="comment">// &quot;bound foo&quot;</span></span><br><span class="line"></span><br><span class="line">(<span class="keyword">function</span>(<span class="params"></span>)&#123;&#125;).<span class="title function_">bind</span>(&#123;&#125;).<span class="property">name</span> <span class="comment">// &quot;bound &quot;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h4><ul>
+<li>基本用法</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="title function_">sum</span> = (<span class="params">num1, num2</span>) =&gt; num1 + num2;</span><br><span class="line"><span class="comment">// 等同于</span></span><br><span class="line"><span class="keyword">var</span> sum = <span class="keyword">function</span>(<span class="params">num1, num2</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> num1 + num2;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>箭头函数使用注意点：</p>
+<ul>
+<li>函数体内<code>this</code>对象是定义时所在对象，不是使用时候所在对象（其实是没有<code>this</code>）</li>
+<li>不可以用作构造函数，即不能用<code>new</code></li>
+<li>函数内<code>arguments</code>对象不存在，可以用<code>reset</code>对象</li>
+<li>不可以使用<code>yield</code>命令，所以不能用作<code>Generator</code>函数</li>
+</ul>
+</li>
+<li><p>嵌套的箭头函数</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 类似pipeline管道机制</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">pipeline</span> = (<span class="params">...funcs</span>) =&gt;</span><br><span class="line">  <span class="function"><span class="params">val</span> =&gt;</span> funcs.<span class="title function_">reduce</span>(<span class="function">(<span class="params">a, b</span>) =&gt;</span> <span class="title function_">b</span>(a), val);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">plus1</span> = a =&gt; a + <span class="number">1</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="title function_">mult2</span> = a =&gt; a * <span class="number">2</span>;</span><br><span class="line"><span class="keyword">const</span> addThenMult = <span class="title function_">pipeline</span>(plus1, mult2);</span><br><span class="line"></span><br><span class="line"><span class="title function_">addThenMult</span>(<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>绑定this</li>
+</ul>
+<p>ES7的提案，但是babel转码器已经支持，通过<code>::</code>双冒号</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">foo</span>::bar;</span><br><span class="line"><span class="comment">// 等同于</span></span><br><span class="line">bar.<span class="title function_">bind</span>(foo);</span><br><span class="line"></span><br><span class="line"><span class="attr">foo</span>::<span class="title function_">bar</span>(...<span class="variable language_">arguments</span>);</span><br><span class="line"><span class="comment">// 等同于</span></span><br><span class="line">bar.<span class="title function_">apply</span>(foo, <span class="variable language_">arguments</span>);</span><br></pre></td></tr></table></figure>
+
+<p>由于双冒号返回的还是对象，所以可以链式调用</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; map, takeWhile, forEach &#125; <span class="keyword">from</span> <span class="string">&quot;iterlib&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="title function_">getPlayers</span>()</span><br><span class="line">::<span class="title function_">map</span>(<span class="function"><span class="params">x</span> =&gt;</span> x.<span class="title function_">character</span>())</span><br><span class="line">::<span class="title function_">takeWhile</span>(<span class="function"><span class="params">x</span> =&gt;</span> x.<span class="property">strength</span> &gt; <span class="number">100</span>)</span><br><span class="line">::<span class="title function_">forEach</span>(<span class="function"><span class="params">x</span> =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(x));</span><br></pre></td></tr></table></figure>
+
+<h4 id="尾调用优化"><a href="#尾调用优化" class="headerlink" title="尾调用优化"></a>尾调用优化</h4><ul>
+<li>概念：函数的最后一步是调用另一个函数（函数式编程的重要概念），不能有其他操作，只有调用，并且是<code>return</code>里的调用：</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">f</span>(<span class="params">x</span>)&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="title function_">g</span>(x);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>尾递归：由于递归操作耗内存，使用尾调用，可以避免保存之前函数的环境，直接返回函数调用。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">factorial</span>(<span class="params">n</span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (n === <span class="number">1</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">return</span> n * <span class="title function_">factorial</span>(n - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">factorial</span>(<span class="number">5</span>) <span class="comment">// 120</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 尾调用优化</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">factorial</span>(<span class="params">n, total</span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (n === <span class="number">1</span>) <span class="keyword">return</span> total;</span><br><span class="line">  <span class="keyword">return</span> <span class="title function_">factorial</span>(n - <span class="number">1</span>, n * total);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">factorial</span>(<span class="number">5</span>, <span class="number">1</span>) <span class="comment">// 120</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>尾调用只在严格模式下开启。</li>
+</ul>
+<h4 id="函数参数的尾逗号"><a href="#函数参数的尾逗号" class="headerlink" title="函数参数的尾逗号"></a>函数参数的尾逗号</h4><ul>
+<li>ES6允许函数参数最后一个是逗号</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">clownsEverywhere</span>(<span class="params"></span></span><br><span class="line"><span class="params">  param1,</span></span><br><span class="line"><span class="params">  param2,</span></span><br><span class="line"><span class="params"></span>) &#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">clownsEverywhere</span>(</span><br><span class="line">  <span class="string">&#x27;foo&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;bar&#x27;</span>,</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/ES6/" rel="tag"># ES6</a>
+              <a href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag"># 笔记</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2017/02/13/before-2024/ES6-6/" rel="prev" title="数组的扩展--笔记">
+                  <i class="fa fa-angle-left"></i> 数组的扩展--笔记
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2017/02/15/before-2024/ES6-8/" rel="next" title="对象的扩展--笔记">
+                  对象的扩展--笔记 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">xk</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

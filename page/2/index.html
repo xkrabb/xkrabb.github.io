@@ -120,7 +120,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-count">28</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -152,7 +152,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2017/02/18/ES6-14/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2017/02/19/before-2024/ES6-15/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -170,7 +170,92 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/02/18/ES6-14/" class="post-title-link" itemprop="url">Iterator和for...of循环--笔记</a>
+          <a href="/2017/02/19/before-2024/ES6-15/" class="post-title-link" itemprop="url">Generator函数的语法--笔记</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2017-02-19 10:15:21" itemprop="dateCreated datePublished" datetime="2017-02-19T10:15:21+08:00">2017-02-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-07-01 22:46:30" itemprop="dateModified" datetime="2024-07-01T22:46:30+08:00">2024-07-01</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h4 id="Generator概念"><a href="#Generator概念" class="headerlink" title="Generator概念"></a>Generator概念</h4><p>ES6提供的一部异步编程解决方案，可以理解成状态机，封装了多个内部状态。</p>
+<p>执行<code>Generator</code>函数会返回一个遍历器对象，该函数与普通函数的区别在于：<code>function</code>后面有一个<code>*</code>；函数体内使用<code>yield</code>语句定义不同的内部状态</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span>* <span class="title function_">helloWorldGenerator</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">yield</span> <span class="string">&#x27;hello&#x27;</span>;</span><br><span class="line">  <span class="keyword">yield</span> <span class="string">&#x27;world&#x27;</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">&#x27;ending&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> hw = <span class="title function_">helloWorldGenerator</span>();</span><br><span class="line"><span class="comment">// 调用next返回内部状态</span></span><br><span class="line">hw.<span class="title function_">next</span>()</span><br><span class="line"><span class="comment">// &#123; value: &#x27;hello&#x27;, done: false &#125;</span></span><br><span class="line">hw.<span class="title function_">next</span>()</span><br><span class="line"><span class="comment">// &#123; value: &#x27;world&#x27;, done: false &#125;</span></span><br><span class="line">hw.<span class="title function_">next</span>()</span><br><span class="line"><span class="comment">// &#123; value: &#x27;ending&#x27;, done: true &#125;</span></span><br><span class="line">hw.<span class="title function_">next</span>()</span><br><span class="line"><span class="comment">// &#123; value: undefined, done: true &#125;</span></span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2017/02/19/before-2024/ES6-15/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2017/02/18/before-2024/ES6-14/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="xk">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2017/02/18/before-2024/ES6-14/" class="post-title-link" itemprop="url">Iterator和for...of循环--笔记</a>
         </h2>
 
         <div class="post-meta-container">
@@ -207,7 +292,7 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> it = <span class="title function_">makeIterator</span>([<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>]);</span><br><span class="line"></span><br><span class="line">it.<span class="title function_">next</span>() <span class="comment">// &#123; value: &quot;a&quot;, done: false &#125;</span></span><br><span class="line">it.<span class="title function_">next</span>() <span class="comment">// &#123; value: &quot;b&quot;, done: false &#125;</span></span><br><span class="line">it.<span class="title function_">next</span>() <span class="comment">// &#123; value: undefined, done: true &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">makeIterator</span>(<span class="params">array</span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> nextIndex = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    <span class="attr">next</span>: <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> nextIndex &lt; array.<span class="property">length</span> ?</span><br><span class="line">        &#123;<span class="attr">value</span>: array[nextIndex++], <span class="attr">done</span>: <span class="literal">false</span>&#125; :</span><br><span class="line">        &#123;<span class="attr">value</span>: <span class="literal">undefined</span>, <span class="attr">done</span>: <span class="literal">true</span>&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2017/02/18/ES6-14/#more" rel="contents">
+              <a class="btn" href="/2017/02/18/before-2024/ES6-14/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -238,7 +323,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2017/02/18/ES6-13/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2017/02/18/before-2024/ES6-13/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -256,7 +341,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/02/18/ES6-13/" class="post-title-link" itemprop="url">Promise对象--笔记</a>
+          <a href="/2017/02/18/before-2024/ES6-13/" class="post-title-link" itemprop="url">Promise对象--笔记</a>
         </h2>
 
         <div class="post-meta-container">
@@ -291,7 +376,7 @@
 <h4 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> promise = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="keyword">function</span>(<span class="params">resolve, reject</span>) &#123;</span><br><span class="line">  <span class="comment">// ... some code</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="comment">/* 异步操作成功 */</span>)&#123;</span><br><span class="line">    <span class="title function_">resolve</span>(value);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="title function_">reject</span>(error);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2017/02/18/ES6-13/#more" rel="contents">
+              <a class="btn" href="/2017/02/18/before-2024/ES6-13/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -322,7 +407,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2017/02/18/ES6-12/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2017/02/18/before-2024/ES6-12/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -340,7 +425,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/02/18/ES6-12/" class="post-title-link" itemprop="url">Reflect--笔记</a>
+          <a href="/2017/02/18/before-2024/ES6-12/" class="post-title-link" itemprop="url">Reflect--笔记</a>
         </h2>
 
         <div class="post-meta-container">
@@ -378,7 +463,7 @@
 <p>4，<code>Reflect</code>对象的方法与<code>Proxy</code>对象的方法一一对应，只要是<code>Proxy</code>对象的方法，就能在<code>Reflect</code>对象上找到对应的方法。这就让<code>Proxy</code>对象可以方便地调用对应的<code>Reflect</code>方法，完成默认行为，作为修改行为的基础。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2017/02/18/ES6-12/#more" rel="contents">
+              <a class="btn" href="/2017/02/18/before-2024/ES6-12/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -409,7 +494,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2017/02/17/ES6-11/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2017/02/17/before-2024/ES6-11/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -427,7 +512,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/02/17/ES6-11/" class="post-title-link" itemprop="url">Proxy--笔记</a>
+          <a href="/2017/02/17/before-2024/ES6-11/" class="post-title-link" itemprop="url">Proxy--笔记</a>
         </h2>
 
         <div class="post-meta-container">
@@ -462,7 +547,7 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = <span class="keyword">new</span> <span class="title class_">Proxy</span>(&#123;&#125;, &#123;</span><br><span class="line">  <span class="attr">get</span>: <span class="keyword">function</span> (<span class="params">target, key, receiver</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`getting <span class="subst">$&#123;key&#125;</span>!`</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="title class_">Reflect</span>.<span class="title function_">get</span>(target, key, receiver);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">set</span>: <span class="keyword">function</span> (<span class="params">target, key, value, receiver</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`setting <span class="subst">$&#123;key&#125;</span>!`</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="title class_">Reflect</span>.<span class="title function_">set</span>(target, key, value, receiver);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">obj.<span class="property">count</span> = <span class="number">1</span></span><br><span class="line"><span class="comment">//  setting count!</span></span><br><span class="line">++obj.<span class="property">count</span></span><br><span class="line"><span class="comment">//  getting count!</span></span><br><span class="line"><span class="comment">//  setting count!</span></span><br><span class="line"><span class="comment">//  2</span></span><br></pre></td></tr></table></figure>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2017/02/17/ES6-11/#more" rel="contents">
+              <a class="btn" href="/2017/02/17/before-2024/ES6-11/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -493,7 +578,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2017/02/16/ES6-10/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2017/02/16/before-2024/ES6-10/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -511,7 +596,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/02/16/ES6-10/" class="post-title-link" itemprop="url">Set和Map数据结构--笔记</a>
+          <a href="/2017/02/16/before-2024/ES6-10/" class="post-title-link" itemprop="url">Set和Map数据结构--笔记</a>
         </h2>
 
         <div class="post-meta-container">
@@ -548,7 +633,7 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 例一</span></span><br><span class="line"><span class="keyword">var</span> set = <span class="keyword">new</span> <span class="title class_">Set</span>([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">4</span>]);</span><br><span class="line">[...set]</span><br><span class="line"><span class="comment">// [1, 2, 3, 4]</span></span><br><span class="line"><span class="comment">// 例二</span></span><br><span class="line"><span class="keyword">var</span> items = <span class="keyword">new</span> <span class="title class_">Set</span>([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">5</span>, <span class="number">5</span>, <span class="number">5</span>]);</span><br><span class="line">items.<span class="property">size</span> <span class="comment">// 5</span></span><br><span class="line"><span class="comment">// 例三</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">divs</span> () &#123;</span><br><span class="line">  <span class="keyword">return</span> [...<span class="variable language_">document</span>.<span class="title function_">querySelectorAll</span>(<span class="string">&#x27;div&#x27;</span>)];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> set = <span class="keyword">new</span> <span class="title class_">Set</span>(<span class="title function_">divs</span>());</span><br><span class="line">set.<span class="property">size</span> <span class="comment">// 56</span></span><br><span class="line"><span class="comment">// 类似于</span></span><br><span class="line"><span class="title function_">divs</span>().<span class="title function_">forEach</span>(<span class="function"><span class="params">div</span> =&gt;</span> set.<span class="title function_">add</span>(div));</span><br><span class="line">set.<span class="property">size</span> <span class="comment">// 56</span></span><br></pre></td></tr></table></figure>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2017/02/16/ES6-10/#more" rel="contents">
+              <a class="btn" href="/2017/02/16/before-2024/ES6-10/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -579,7 +664,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2017/02/16/ES6-9/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2017/02/16/before-2024/ES6-9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -597,7 +682,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/02/16/ES6-9/" class="post-title-link" itemprop="url">Symbol--笔记</a>
+          <a href="/2017/02/16/before-2024/ES6-9/" class="post-title-link" itemprop="url">Symbol--笔记</a>
         </h2>
 
         <div class="post-meta-container">
@@ -636,7 +721,7 @@
 <p><code>Symbol</code>值不能参与其他运算，但是可以显示转成字符串<code>String(sym) ,sym.toString()</code></p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2017/02/16/ES6-9/#more" rel="contents">
+              <a class="btn" href="/2017/02/16/before-2024/ES6-9/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -667,7 +752,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2017/02/15/ES6-8/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2017/02/15/before-2024/ES6-8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -685,7 +770,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/02/15/ES6-8/" class="post-title-link" itemprop="url">对象的扩展--笔记</a>
+          <a href="/2017/02/15/before-2024/ES6-8/" class="post-title-link" itemprop="url">对象的扩展--笔记</a>
         </h2>
 
         <div class="post-meta-container">
@@ -722,7 +807,7 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> foo = <span class="string">&#x27;bar&#x27;</span>;</span><br><span class="line"><span class="keyword">var</span> baz = &#123;foo&#125;;</span><br><span class="line">baz <span class="comment">// &#123;foo: &quot;bar&quot;&#125;</span></span><br><span class="line"><span class="comment">// 等同于</span></span><br><span class="line"><span class="keyword">var</span> baz = &#123;<span class="attr">foo</span>: foo&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> o = &#123;</span><br><span class="line">  <span class="title function_">method</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;Hello!&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 等同于</span></span><br><span class="line"><span class="keyword">var</span> o = &#123;</span><br><span class="line">  <span class="attr">method</span>: <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;Hello!&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2017/02/15/ES6-8/#more" rel="contents">
+              <a class="btn" href="/2017/02/15/before-2024/ES6-8/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -753,7 +838,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2017/02/14/ES6-7/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2017/02/14/before-2024/ES6-7/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -771,7 +856,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/02/14/ES6-7/" class="post-title-link" itemprop="url">函数的扩展--笔记</a>
+          <a href="/2017/02/14/before-2024/ES6-7/" class="post-title-link" itemprop="url">函数的扩展--笔记</a>
         </h2>
 
         <div class="post-meta-container">
@@ -808,7 +893,7 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 默认参数不能重复用let，const声明</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Point</span>(<span class="params">x = <span class="number">0</span>, y = <span class="number">0</span></span>) &#123;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">x</span> = x;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">y</span> = y;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2017/02/14/ES6-7/#more" rel="contents">
+              <a class="btn" href="/2017/02/14/before-2024/ES6-7/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -839,7 +924,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2017/02/13/ES6-6/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2017/02/13/before-2024/ES6-6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -857,7 +942,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/02/13/ES6-6/" class="post-title-link" itemprop="url">数组的扩展--笔记</a>
+          <a href="/2017/02/13/before-2024/ES6-6/" class="post-title-link" itemprop="url">数组的扩展--笔记</a>
         </h2>
 
         <div class="post-meta-container">
@@ -894,106 +979,7 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arrayLike = &#123;</span><br><span class="line">    <span class="string">&#x27;0&#x27;</span>: <span class="string">&#x27;a&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;1&#x27;</span>: <span class="string">&#x27;b&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;2&#x27;</span>: <span class="string">&#x27;c&#x27;</span>,</span><br><span class="line">    <span class="attr">length</span>: <span class="number">3</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// ES5的写法</span></span><br><span class="line"><span class="keyword">var</span> arr1 = [].<span class="property">slice</span>.<span class="title function_">call</span>(arrayLike); <span class="comment">// [&#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;]</span></span><br><span class="line"><span class="comment">// ES6的写法</span></span><br><span class="line"><span class="keyword">let</span> arr2 = <span class="title class_">Array</span>.<span class="title function_">from</span>(arrayLike); <span class="comment">// [&#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;]</span></span><br></pre></td></tr></table></figure>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2017/02/13/ES6-6/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2017/02/12/ES6-5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="xk">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="博客">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/02/12/ES6-5/" class="post-title-link" itemprop="url">数值的扩展--笔记</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2017-02-12 17:29:13" itemprop="dateCreated datePublished" datetime="2017-02-12T17:29:13+08:00">2017-02-12</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-07-01 22:46:30" itemprop="dateModified" datetime="2024-07-01T22:46:30+08:00">2024-07-01</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h4 id="二进制和八进制"><a href="#二进制和八进制" class="headerlink" title="二进制和八进制"></a>二进制和八进制</h4><ul>
-<li>ES6 提供了二进制和八进制数值的新的写法，分别用前缀<code>0b（或0B）</code>和<code>0o（或0O）</code>表示。前缀字符串转成十进制用<code>Number</code>，<code>Number(0b111)</code> &#x3D; 7</li>
-</ul>
-<h4 id="Number下方法"><a href="#Number下方法" class="headerlink" title="Number下方法"></a>Number下方法</h4><ul>
-<li><p><code>Number.isFinite()</code>, 检查数值是否无限(字符串不会转数字)</p>
-</li>
-<li><p><code>Number.isNaN()</code>，检查数值是否<code>NAN</code>(字符串不会转数字)</p>
-</li>
-<li><p><code>parseInt()和parseFloat()</code>，转整数，浮点数，减少全局方法</p>
-</li>
-<li><p><code>Number.isInteger()</code>，判断是否整数（非数字为false）</p>
-</li>
-<li><p><code>Number.EPSILON</code>，表示一个极小的常量（<code>0.1+0.2 &lt;  Number.EPSILON</code>）</p>
-</li>
-<li><p><code>Number.isSafeInteger()</code>，是否是安全整数，即<code>-2^53~2^53</code>之间</p>
-</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2017/02/12/ES6-5/#more" rel="contents">
+              <a class="btn" href="/2017/02/13/before-2024/ES6-6/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>

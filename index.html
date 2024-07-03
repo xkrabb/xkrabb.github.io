@@ -120,7 +120,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-count">28</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -152,7 +152,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2024/07/02/antd-modal-from-error/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/07/03/2024/communication-between-tabs/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -170,7 +170,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/07/02/antd-modal-from-error/" class="post-title-link" itemprop="url">AntD组件在modal内，Form警告警告情况</a>
+          <a href="/2024/07/03/2024/communication-between-tabs/" class="post-title-link" itemprop="url">浏览器同域跨标签页通信</a>
         </h2>
 
         <div class="post-meta-container">
@@ -182,7 +182,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2024-07-02 20:27:25 / 修改时间：22:38:15" itemprop="dateCreated datePublished" datetime="2024-07-02T20:27:25+08:00">2024-07-02</time>
+      <time title="创建时间：2024-07-03 19:31:01 / 修改时间：19:34:19" itemprop="dateCreated datePublished" datetime="2024-07-03T19:31:01+08:00">2024-07-03</time>
     </span>
 
   
@@ -195,11 +195,10 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h4 id="现象"><a href="#现象" class="headerlink" title="现象"></a>现象</h4><p>使用 AntD 组件，如果 Modal 弹框使用 Form 表单组件容易提示：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Warning</span>: <span class="title class_">Instance</span> created by useForm is not connected to any <span class="title class_">Form</span> element.</span><br><span class="line"><span class="title class_">Forget</span> to pass form prop?</span><br></pre></td></tr></table></figure>
+          <p>从用户体验上来讲，站点切换页面过程中不建议弹出多个浏览器标签页，这样会分散用户注意力，增加用户切换标签的操作成本。再好的交互规范，也抗不住产品经理或交互设计师的脑洞大开，在同一个站点多标签访问的时候，标签页间的通信不可避免。下面对几种常见方式，做个比较。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2024/07/02/antd-modal-from-error/#more" rel="contents">
+              <a class="btn" href="/2024/07/03/2024/communication-between-tabs/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -230,7 +229,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2018/05/26/%E9%87%8D%E6%9E%84-%E7%AC%94%E8%AE%B0/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/07/02/2024/antd-modal-from-error/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -248,7 +247,85 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2018/05/26/%E9%87%8D%E6%9E%84-%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">重构--笔记</a>
+          <a href="/2024/07/02/2024/antd-modal-from-error/" class="post-title-link" itemprop="url">AntD组件在modal内，Form警告警告情况</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-07-02 20:27:25 / 修改时间：22:38:15" itemprop="dateCreated datePublished" datetime="2024-07-02T20:27:25+08:00">2024-07-02</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h4 id="现象"><a href="#现象" class="headerlink" title="现象"></a>现象</h4><p>使用 AntD 组件，如果 Modal 弹框使用 Form 表单组件容易提示：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Warning</span>: <span class="title class_">Instance</span> created by useForm is not connected to any <span class="title class_">Form</span> element.</span><br><span class="line"><span class="title class_">Forget</span> to pass form prop?</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2024/07/02/2024/antd-modal-from-error/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2018/05/26/before-2024/%E9%87%8D%E6%9E%84-%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="xk">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2018/05/26/before-2024/%E9%87%8D%E6%9E%84-%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">重构--笔记</a>
         </h2>
 
         <div class="post-meta-container">
@@ -289,7 +366,7 @@
 </ul>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2018/05/26/%E9%87%8D%E6%9E%84-%E7%AC%94%E8%AE%B0/#more" rel="contents">
+              <a class="btn" href="/2018/05/26/before-2024/%E9%87%8D%E6%9E%84-%E7%AC%94%E8%AE%B0/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -320,7 +397,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2017/02/24/ES6-22/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2017/02/24/before-2024/ES6-22/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -338,7 +415,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/02/24/ES6-22/" class="post-title-link" itemprop="url">编程风格--笔记</a>
+          <a href="/2017/02/24/before-2024/ES6-22/" class="post-title-link" itemprop="url">编程风格--笔记</a>
         </h2>
 
         <div class="post-meta-container">
@@ -376,7 +453,7 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// bad</span></span><br><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>, b = <span class="number">2</span>, c = <span class="number">3</span>;</span><br><span class="line"><span class="comment">// good</span></span><br><span class="line"><span class="keyword">const</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">const</span> b = <span class="number">2</span>;</span><br><span class="line"><span class="keyword">const</span> c = <span class="number">3</span>;</span><br><span class="line"><span class="comment">// best</span></span><br><span class="line"><span class="keyword">const</span> [a, b, c] = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br></pre></td></tr></table></figure>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2017/02/24/ES6-22/#more" rel="contents">
+              <a class="btn" href="/2017/02/24/before-2024/ES6-22/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -407,7 +484,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2017/02/23/ES6-21/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2017/02/23/before-2024/ES6-21/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -425,7 +502,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/02/23/ES6-21/" class="post-title-link" itemprop="url">Module的加载实现--笔记</a>
+          <a href="/2017/02/23/before-2024/ES6-21/" class="post-title-link" itemprop="url">Module的加载实现--笔记</a>
         </h2>
 
         <div class="post-meta-container">
@@ -459,7 +536,7 @@
           <h4 id="浏览器加载"><a href="#浏览器加载" class="headerlink" title="浏览器加载"></a>浏览器加载</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 页面内嵌的脚本 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;application/javascript&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">  <span class="comment">// module code</span></span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 外部脚本 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;application/javascript&quot;</span> <span class="attr">src</span>=<span class="string">&quot;path/to/myModule.js&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2017/02/23/ES6-21/#more" rel="contents">
+              <a class="btn" href="/2017/02/23/before-2024/ES6-21/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -490,7 +567,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2017/02/23/ES6-20/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2017/02/23/before-2024/ES6-20/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -508,7 +585,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/02/23/ES6-20/" class="post-title-link" itemprop="url">Module的语法--笔记</a>
+          <a href="/2017/02/23/before-2024/ES6-20/" class="post-title-link" itemprop="url">Module的语法--笔记</a>
         </h2>
 
         <div class="post-meta-container">
@@ -543,7 +620,7 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// CommonJS模块</span></span><br><span class="line"><span class="keyword">let</span> &#123; stat, exists, readFile &#125; = <span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>);</span><br><span class="line"><span class="comment">// ES6模块</span></span><br><span class="line"><span class="keyword">import</span> &#123; stat, exists, readFile &#125; <span class="keyword">from</span> <span class="string">&#x27;fs&#x27;</span>;</span><br></pre></td></tr></table></figure>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2017/02/23/ES6-20/#more" rel="contents">
+              <a class="btn" href="/2017/02/23/before-2024/ES6-20/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -574,7 +651,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2017/02/22/ES6-19/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2017/02/22/before-2024/ES6-19/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -592,7 +669,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/02/22/ES6-19/" class="post-title-link" itemprop="url">Decorator--笔记</a>
+          <a href="/2017/02/22/before-2024/ES6-19/" class="post-title-link" itemprop="url">Decorator--笔记</a>
         </h2>
 
         <div class="post-meta-container">
@@ -629,7 +706,7 @@
 <p>修饰器函数的第一个参数是，要修饰的目标类，如果需要更多参数，需要再封装一层</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2017/02/22/ES6-19/#more" rel="contents">
+              <a class="btn" href="/2017/02/22/before-2024/ES6-19/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -660,7 +737,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2017/02/22/ES6-18/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2017/02/22/before-2024/ES6-18/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -678,7 +755,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/02/22/ES6-18/" class="post-title-link" itemprop="url">Class--笔记</a>
+          <a href="/2017/02/22/before-2024/ES6-18/" class="post-title-link" itemprop="url">Class--笔记</a>
         </h2>
 
         <div class="post-meta-container">
@@ -715,7 +792,7 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//定义类</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Point</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params">x, y</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">x</span> = x;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">y</span> = y;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="comment">// 方法之间不需要分号，类里的方法相当于挂载在Point.prototype上</span></span><br><span class="line">  <span class="title function_">toString</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;(&#x27;</span> + <span class="variable language_">this</span>.<span class="property">x</span> + <span class="string">&#x27;, &#x27;</span> + <span class="variable language_">this</span>.<span class="property">y</span> + <span class="string">&#x27;)&#x27;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 与ES5不一样，方法是不可枚举的</span></span><br><span class="line"><span class="title class_">Object</span>.<span class="title function_">keys</span>(<span class="title class_">Point</span>.<span class="property"><span class="keyword">prototype</span></span>)</span><br><span class="line"><span class="comment">// []</span></span><br><span class="line"><span class="title class_">Object</span>.<span class="title function_">getOwnPropertyNames</span>(<span class="title class_">Point</span>.<span class="property"><span class="keyword">prototype</span></span>)</span><br><span class="line"><span class="comment">// [&quot;constructor&quot;,&quot;toString&quot;]</span></span><br></pre></td></tr></table></figure>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2017/02/22/ES6-18/#more" rel="contents">
+              <a class="btn" href="/2017/02/22/before-2024/ES6-18/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -746,7 +823,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2017/02/20/ES6-17/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2017/02/20/before-2024/ES6-17/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -764,7 +841,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/02/20/ES6-17/" class="post-title-link" itemprop="url">async--笔记</a>
+          <a href="/2017/02/20/before-2024/ES6-17/" class="post-title-link" itemprop="url">async--笔记</a>
         </h2>
 
         <div class="post-meta-container">
@@ -799,7 +876,7 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> asyncReadFile = <span class="keyword">async</span> <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> f1 = <span class="keyword">await</span> <span class="title function_">readFile</span>(<span class="string">&#x27;/etc/fstab&#x27;</span>);</span><br><span class="line">  <span class="keyword">var</span> f2 = <span class="keyword">await</span> <span class="title function_">readFile</span>(<span class="string">&#x27;/etc/shells&#x27;</span>);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(f1.<span class="title function_">toString</span>());</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(f2.<span class="title function_">toString</span>());</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2017/02/20/ES6-17/#more" rel="contents">
+              <a class="btn" href="/2017/02/20/before-2024/ES6-17/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -830,7 +907,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2017/02/19/ES6-16/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2017/02/19/before-2024/ES6-16/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -848,7 +925,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/02/19/ES6-16/" class="post-title-link" itemprop="url">Generator函数的异步应用--笔记</a>
+          <a href="/2017/02/19/before-2024/ES6-16/" class="post-title-link" itemprop="url">Generator函数的异步应用--笔记</a>
         </h2>
 
         <div class="post-meta-container">
@@ -890,92 +967,7 @@
 </ul>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2017/02/19/ES6-16/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2017/02/19/ES6-15/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="xk">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="博客">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/02/19/ES6-15/" class="post-title-link" itemprop="url">Generator函数的语法--笔记</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2017-02-19 10:15:21" itemprop="dateCreated datePublished" datetime="2017-02-19T10:15:21+08:00">2017-02-19</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-07-01 22:46:30" itemprop="dateModified" datetime="2024-07-01T22:46:30+08:00">2024-07-01</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h4 id="Generator概念"><a href="#Generator概念" class="headerlink" title="Generator概念"></a>Generator概念</h4><p>ES6提供的一部异步编程解决方案，可以理解成状态机，封装了多个内部状态。</p>
-<p>执行<code>Generator</code>函数会返回一个遍历器对象，该函数与普通函数的区别在于：<code>function</code>后面有一个<code>*</code>；函数体内使用<code>yield</code>语句定义不同的内部状态</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span>* <span class="title function_">helloWorldGenerator</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">yield</span> <span class="string">&#x27;hello&#x27;</span>;</span><br><span class="line">  <span class="keyword">yield</span> <span class="string">&#x27;world&#x27;</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">&#x27;ending&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> hw = <span class="title function_">helloWorldGenerator</span>();</span><br><span class="line"><span class="comment">// 调用next返回内部状态</span></span><br><span class="line">hw.<span class="title function_">next</span>()</span><br><span class="line"><span class="comment">// &#123; value: &#x27;hello&#x27;, done: false &#125;</span></span><br><span class="line">hw.<span class="title function_">next</span>()</span><br><span class="line"><span class="comment">// &#123; value: &#x27;world&#x27;, done: false &#125;</span></span><br><span class="line">hw.<span class="title function_">next</span>()</span><br><span class="line"><span class="comment">// &#123; value: &#x27;ending&#x27;, done: true &#125;</span></span><br><span class="line">hw.<span class="title function_">next</span>()</span><br><span class="line"><span class="comment">// &#123; value: undefined, done: true &#125;</span></span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2017/02/19/ES6-15/#more" rel="contents">
+              <a class="btn" href="/2017/02/19/before-2024/ES6-16/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>

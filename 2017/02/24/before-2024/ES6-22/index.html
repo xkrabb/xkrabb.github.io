@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="块级作用域 let取代var，完全可以取代 全局常量和线程安全，优先用const  12345678&#x2F;&#x2F; badvar a &#x3D; 1, b &#x3D; 2, c &#x3D; 3;&#x2F;&#x2F; goodconst a &#x3D; 1;const b &#x3D; 2;const c &#x3D; 3;&#x2F;&#x2F; bestconst [a, b, c] &#x3D; [1, 2, 3];">
+<meta property="og:type" content="article">
+<meta property="og:title" content="编程风格--笔记">
+<meta property="og:url" content="http://example.com/2017/02/24/before-2024/ES6-22/index.html">
+<meta property="og:site_name" content="博客">
+<meta property="og:description" content="块级作用域 let取代var，完全可以取代 全局常量和线程安全，优先用const  12345678&#x2F;&#x2F; badvar a &#x3D; 1, b &#x3D; 2, c &#x3D; 3;&#x2F;&#x2F; goodconst a &#x3D; 1;const b &#x3D; 2;const c &#x3D; 3;&#x2F;&#x2F; bestconst [a, b, c] &#x3D; [1, 2, 3];">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2017-02-24T14:07:00.000Z">
+<meta property="article:modified_time" content="2024-07-01T14:46:30.779Z">
+<meta property="article:author" content="xk">
+<meta property="article:tag" content="ES6">
+<meta property="article:tag" content="笔记">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2017/02/24/before-2024/ES6-22/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2017/02/24/before-2024/ES6-22/","path":"2017/02/24/before-2024/ES6-22/","title":"编程风格--笔记"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>编程风格--笔记 | 博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9D%97%E7%BA%A7%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="nav-number">1.</span> <span class="nav-text">块级作用域</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-number">2.</span> <span class="nav-text">字符串</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%A3%E6%9E%84%E8%B5%8B%E5%80%BC"><span class="nav-number">3.</span> <span class="nav-text">解构赋值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AF%B9%E8%B1%A1"><span class="nav-number">4.</span> <span class="nav-text">对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E7%BB%84"><span class="nav-number">5.</span> <span class="nav-text">数组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%87%BD%E6%95%B0"><span class="nav-number">6.</span> <span class="nav-text">函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Map%E7%BB%93%E6%9E%84"><span class="nav-number">7.</span> <span class="nav-text">Map结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Class"><span class="nav-number">8.</span> <span class="nav-text">Class</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9D%97"><span class="nav-number">9.</span> <span class="nav-text">模块</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ESLint%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">10.</span> <span class="nav-text">ESLint的使用</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">xk</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2017/02/24/before-2024/ES6-22/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="xk">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="编程风格--笔记 | 博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          编程风格--笔记
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2017-02-24 22:07:00" itemprop="dateCreated datePublished" datetime="2017-02-24T22:07:00+08:00">2017-02-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-07-01 22:46:30" itemprop="dateModified" datetime="2024-07-01T22:46:30+08:00">2024-07-01</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h4 id="块级作用域"><a href="#块级作用域" class="headerlink" title="块级作用域"></a>块级作用域</h4><ul>
+<li><code>let</code>取代<code>var</code>，完全可以取代</li>
+<li>全局常量和线程安全，优先用<code>const</code></li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// bad</span></span><br><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>, b = <span class="number">2</span>, c = <span class="number">3</span>;</span><br><span class="line"><span class="comment">// good</span></span><br><span class="line"><span class="keyword">const</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">const</span> b = <span class="number">2</span>;</span><br><span class="line"><span class="keyword">const</span> c = <span class="number">3</span>;</span><br><span class="line"><span class="comment">// best</span></span><br><span class="line"><span class="keyword">const</span> [a, b, c] = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+
+<h4 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h4><p>静态字符串是使用单引号或反引号，动态字符串用反引号</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// bad</span></span><br><span class="line"><span class="keyword">const</span> a = <span class="string">&quot;foobar&quot;</span>;</span><br><span class="line"><span class="keyword">const</span> b = <span class="string">&#x27;foo&#x27;</span> + a + <span class="string">&#x27;bar&#x27;</span>;</span><br><span class="line"><span class="comment">// acceptable</span></span><br><span class="line"><span class="keyword">const</span> c = <span class="string">`foobar`</span>;</span><br><span class="line"><span class="comment">// good</span></span><br><span class="line"><span class="keyword">const</span> a = <span class="string">&#x27;foobar&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> b = <span class="string">`foo<span class="subst">$&#123;a&#125;</span>bar`</span>;</span><br><span class="line"><span class="keyword">const</span> c = <span class="string">&#x27;foobar&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<h4 id="解构赋值"><a href="#解构赋值" class="headerlink" title="解构赋值"></a>解构赋值</h4><ul>
+<li>数组成员对变量赋值，函数参数，函数返回多个值</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>];</span><br><span class="line"><span class="comment">// bad</span></span><br><span class="line"><span class="keyword">const</span> first = arr[<span class="number">0</span>];</span><br><span class="line"><span class="keyword">const</span> second = arr[<span class="number">1</span>];</span><br><span class="line"><span class="comment">// good</span></span><br><span class="line"><span class="keyword">const</span> [first, second] = arr;</span><br><span class="line"></span><br><span class="line"><span class="comment">// bad</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">getFullName</span>(<span class="params">user</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> firstName = user.<span class="property">firstName</span>;</span><br><span class="line">  <span class="keyword">const</span> lastName = user.<span class="property">lastName</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// good</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">getFullName</span>(<span class="params">obj</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> &#123; firstName, lastName &#125; = obj;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// best</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">getFullName</span>(<span class="params">&#123; firstName, lastName &#125;</span>) &#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// bad</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">processInput</span>(<span class="params">input</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> [left, right, top, bottom];</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// good</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">processInput</span>(<span class="params">input</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> &#123; left, right, top, bottom &#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> &#123; left, right &#125; = <span class="title function_">processInput</span>(input);</span><br></pre></td></tr></table></figure>
+
+<h4 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h4><ul>
+<li>单行定义对象结尾不要逗号，多行定义使用逗号结尾</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// bad</span></span><br><span class="line"><span class="keyword">const</span> a = &#123; <span class="attr">k1</span>: v1, <span class="attr">k2</span>: v2, &#125;;</span><br><span class="line"><span class="keyword">const</span> b = &#123;</span><br><span class="line">  <span class="attr">k1</span>: v1,</span><br><span class="line">  <span class="attr">k2</span>: v2</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// good</span></span><br><span class="line"><span class="keyword">const</span> a = &#123; <span class="attr">k1</span>: v1, <span class="attr">k2</span>: v2 &#125;;</span><br><span class="line"><span class="keyword">const</span> b = &#123;</span><br><span class="line">  <span class="attr">k1</span>: v1,</span><br><span class="line">  <span class="attr">k2</span>: v2,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>对象尽量静态化，不要添加新属性，如果必须用<code>Object.assgin</code></li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// bad</span></span><br><span class="line"><span class="keyword">const</span> a = &#123;&#125;;</span><br><span class="line">a.<span class="property">x</span> = <span class="number">3</span>;</span><br><span class="line"><span class="comment">// if reshape unavoidable</span></span><br><span class="line"><span class="keyword">const</span> a = &#123;&#125;;</span><br><span class="line"><span class="title class_">Object</span>.<span class="title function_">assign</span>(a, &#123; <span class="attr">x</span>: <span class="number">3</span> &#125;);</span><br><span class="line"><span class="comment">// good</span></span><br><span class="line"><span class="keyword">const</span> a = &#123; <span class="attr">x</span>: <span class="literal">null</span> &#125;;</span><br><span class="line">a.<span class="property">x</span> = <span class="number">3</span>;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>尽量简洁表达</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ref = <span class="string">&#x27;some value&#x27;</span>;</span><br><span class="line"><span class="comment">// bad</span></span><br><span class="line"><span class="keyword">const</span> atom = &#123;</span><br><span class="line">  <span class="attr">ref</span>: ref,</span><br><span class="line">  <span class="attr">value</span>: <span class="number">1</span>,</span><br><span class="line">  <span class="attr">addValue</span>: <span class="keyword">function</span> (<span class="params">value</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> atom.<span class="property">value</span> + value;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// good</span></span><br><span class="line"><span class="keyword">const</span> atom = &#123;</span><br><span class="line">  ref,</span><br><span class="line">  <span class="attr">value</span>: <span class="number">1</span>,</span><br><span class="line">  <span class="title function_">addValue</span>(<span class="params">value</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> atom.<span class="property">value</span> + value;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h4><ul>
+<li>使用<code>...</code>拷贝数组，<code>Array.form</code>转换成数组</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// bad</span></span><br><span class="line"><span class="keyword">const</span> len = items.<span class="property">length</span>;</span><br><span class="line"><span class="keyword">const</span> itemsCopy = [];</span><br><span class="line"><span class="keyword">let</span> i;</span><br><span class="line"><span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">  itemsCopy[i] = items[i];</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// good</span></span><br><span class="line"><span class="keyword">const</span> itemsCopy = [...items];</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> foo = <span class="variable language_">document</span>.<span class="title function_">querySelectorAll</span>(<span class="string">&#x27;.foo&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> nodes = <span class="title class_">Array</span>.<span class="title function_">from</span>(foo);</span><br></pre></td></tr></table></figure>
+
+<h4 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h4><ul>
+<li>简单，单行，不回复用的函数，尽量使用箭头函数</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// bad</span></span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>].<span class="title function_">map</span>(<span class="keyword">function</span> (<span class="params">x</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> x * x;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// good</span></span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>].<span class="title function_">map</span>(<span class="function">(<span class="params">x</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> x * x;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// best</span></span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>].<span class="title function_">map</span>(<span class="function"><span class="params">x</span> =&gt;</span> x * x);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>箭头函数取代<code>Funciton.prototype.bind</code>,不再需要额外绑定<code>this</code></li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// bad</span></span><br><span class="line"><span class="keyword">const</span> self = <span class="variable language_">this</span>;</span><br><span class="line"><span class="keyword">const</span> boundMethod = <span class="keyword">function</span>(<span class="params">...params</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> method.<span class="title function_">apply</span>(self, params);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// acceptable</span></span><br><span class="line"><span class="keyword">const</span> boundMethod = method.<span class="title function_">bind</span>(<span class="variable language_">this</span>);</span><br><span class="line"><span class="comment">// best</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">boundMethod</span> = (<span class="params">...params</span>) =&gt; method.<span class="title function_">apply</span>(<span class="variable language_">this</span>, params);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>函数体内用<code>rest</code>运算符<code>...</code>，代替<code>agruments</code>，使用默认参数设置</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// bad</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">concatenateAll</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> args = <span class="title class_">Array</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">slice</span>.<span class="title function_">call</span>(<span class="variable language_">arguments</span>);</span><br><span class="line">  <span class="keyword">return</span> args.<span class="title function_">join</span>(<span class="string">&#x27;&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// good</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">concatenateAll</span>(<span class="params">...args</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> args.<span class="title function_">join</span>(<span class="string">&#x27;&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Map结构"><a href="#Map结构" class="headerlink" title="Map结构"></a>Map结构</h4><ul>
+<li>模拟实体对象用<code>Object</code>，而简单的<code>key,value</code>使用<code>Map</code></li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> map = <span class="keyword">new</span> <span class="title class_">Map</span>(arr);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> key <span class="keyword">of</span> map.<span class="title function_">keys</span>()) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(key);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> value <span class="keyword">of</span> map.<span class="title function_">values</span>()) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(value);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> item <span class="keyword">of</span> map.<span class="title function_">entries</span>()) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(item[<span class="number">0</span>], item[<span class="number">1</span>]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Class"><a href="#Class" class="headerlink" title="Class"></a>Class</h4><ul>
+<li>总数用Class，取代需要<code>prototype</code>的操作； <code>extends</code>实现继承</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// bad</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Queue</span>(<span class="params">contents = []</span>) &#123;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">_queue</span> = [...contents];</span><br><span class="line">&#125;</span><br><span class="line"><span class="title class_">Queue</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">pop</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> value = <span class="variable language_">this</span>.<span class="property">_queue</span>[<span class="number">0</span>];</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">_queue</span>.<span class="title function_">splice</span>(<span class="number">0</span>, <span class="number">1</span>);</span><br><span class="line">  <span class="keyword">return</span> value;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// good</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Queue</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params">contents = []</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">_queue</span> = [...contents];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="title function_">pop</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> value = <span class="variable language_">this</span>.<span class="property">_queue</span>[<span class="number">0</span>];</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">_queue</span>.<span class="title function_">splice</span>(<span class="number">0</span>, <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">return</span> value;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// bad</span></span><br><span class="line"><span class="keyword">const</span> inherits = <span class="built_in">require</span>(<span class="string">&#x27;inherits&#x27;</span>);</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">PeekableQueue</span>(<span class="params">contents</span>) &#123;</span><br><span class="line">  <span class="title class_">Queue</span>.<span class="title function_">apply</span>(<span class="variable language_">this</span>, contents);</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">inherits</span>(<span class="title class_">PeekableQueue</span>, <span class="title class_">Queue</span>);</span><br><span class="line"><span class="title class_">PeekableQueue</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">peek</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">_queue</span>[<span class="number">0</span>];</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// good</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">PeekableQueue</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Queue</span> &#123;</span><br><span class="line">  <span class="title function_">peek</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">_queue</span>[<span class="number">0</span>];</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="模块"><a href="#模块" class="headerlink" title="模块"></a>模块</h4><ul>
+<li>用<code>import</code>取代<code>require</code>，<code>export</code>取代<code>module.exports</code></li>
+<li>模块只有一个输出用<code>export default</code>，尽量不要使用<code>*</code>通配符</li>
+<li>输入函数小写开头，输出对象大写开头</li>
+</ul>
+<h4 id="ESLint的使用"><a href="#ESLint的使用" class="headerlink" title="ESLint的使用"></a>ESLint的使用</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ npm i -g eslint</span><br><span class="line">$ npm i -g eslint-config-airbnb</span><br><span class="line"><span class="comment">// .eslintrc文件</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;extends&quot;</span>: <span class="string">&quot;eslint-config-airbnb&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/ES6/" rel="tag"># ES6</a>
+              <a href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag"># 笔记</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2017/02/23/before-2024/ES6-21/" rel="prev" title="Module的加载实现--笔记">
+                  <i class="fa fa-angle-left"></i> Module的加载实现--笔记
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2018/05/26/before-2024/%E9%87%8D%E6%9E%84-%E7%AC%94%E8%AE%B0/" rel="next" title="重构--笔记">
+                  重构--笔记 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">xk</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="从用户体验上来讲，站点切换页面过程中不建议弹出多个浏览器标签页，这样会分散用户注意力，增加用户切换标签的操作成本。再好的交互规范，也抗不住产品经理或交互设计师的脑洞大开，在同一个站点多标签访问的时候，标签页间的通信不可避免。下面对几种常见方式，做个比较。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浏览器同域跨标签页通信">
+<meta property="og:url" content="http://example.com/2024/07/03/2024/communication-between-tabs/index.html">
+<meta property="og:site_name" content="博客">
+<meta property="og:description" content="从用户体验上来讲，站点切换页面过程中不建议弹出多个浏览器标签页，这样会分散用户注意力，增加用户切换标签的操作成本。再好的交互规范，也抗不住产品经理或交互设计师的脑洞大开，在同一个站点多标签访问的时候，标签页间的通信不可避免。下面对几种常见方式，做个比较。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-07-03T11:31:01.000Z">
+<meta property="article:modified_time" content="2024-07-03T11:34:19.113Z">
+<meta property="article:author" content="xk">
+<meta property="article:tag" content="front-end">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2024/07/03/2024/communication-between-tabs/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2024/07/03/2024/communication-between-tabs/","path":"2024/07/03/2024/communication-between-tabs/","title":"浏览器同域跨标签页通信"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>浏览器同域跨标签页通信 | 博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B9%E5%BC%8F%E4%B8%80%EF%BC%9ALocalStorage"><span class="nav-number">1.</span> <span class="nav-text">方式一：LocalStorage</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B9%E5%BC%8F%E4%BA%8C%EF%BC%9ABroadcastChannel"><span class="nav-number">2.</span> <span class="nav-text">方式二：BroadcastChannel</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B9%E5%BC%8F%E4%B8%89%EF%BC%9ApostMessage"><span class="nav-number">3.</span> <span class="nav-text">方式三：postMessage</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B9%E5%BC%8F%E5%9B%9B%EF%BC%9ASharedWorker-API"><span class="nav-number">4.</span> <span class="nav-text">方式四：SharedWorker API</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">xk</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/07/03/2024/communication-between-tabs/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="xk">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="浏览器同域跨标签页通信 | 博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          浏览器同域跨标签页通信
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-07-03 19:31:01 / 修改时间：19:34:19" itemprop="dateCreated datePublished" datetime="2024-07-03T19:31:01+08:00">2024-07-03</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>从用户体验上来讲，站点切换页面过程中不建议弹出多个浏览器标签页，这样会分散用户注意力，增加用户切换标签的操作成本。再好的交互规范，也抗不住产品经理或交互设计师的脑洞大开，在同一个站点多标签访问的时候，标签页间的通信不可避免。下面对几种常见方式，做个比较。</p>
+<span id="more"></span>
+
+<h4 id="方式一：LocalStorage"><a href="#方式一：LocalStorage" class="headerlink" title="方式一：LocalStorage"></a>方式一：LocalStorage</h4><p>因为相同域名下，localStorage 数据是可以共享，而且是单例。所以利用 localStorage 作为中介，可以实现标签间通信。所幸的是 localStorage 在 setItem 的时候，会触发 storage 事件，那么我们只要在通信双方都监听上该事件，就可以愉快的通信的了。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// 发送方</span><br><span class="line">function postMsg(info:string) &#123;</span><br><span class="line">  localStorage.setItem(&#x27;channeld&#x27;,info)</span><br><span class="line">&#125;</span><br><span class="line">// 接收方</span><br><span class="line">function receiveMsg(callback: (info:string) =&gt; void) &#123;</span><br><span class="line">  window.addEventListener(&#x27;storage&#x27;, function(event)&#123;</span><br><span class="line">    if(event.key ===&#x27;channelId&#x27;) &#123;</span><br><span class="line">      callback(event.newValue)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>优点：简单；接收方离线，消息不丢失，接收方上线后可以决定是否处理消息<br>缺点：使用大小有限制 5m（也不是什么大问题），stroage 只能放字符串，所以消息存之前需要序列化</p>
+<h4 id="方式二：BroadcastChannel"><a href="#方式二：BroadcastChannel" class="headerlink" title="方式二：BroadcastChannel"></a>方式二：BroadcastChannel</h4><p>BroadcastChannel 对象，顾名思义是以广播信息的通信，它创建的通信实例（相同参数创建的会被当作是同一个通信通道，所以不同标签下创建的通道可以相互通信），只要是订阅了消息的，都可以接收到。当然上述的 localStorage 可以看做的广播的方式通信的。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// 发送接收都需要</span><br><span class="line">const bc = new BroadcastChannel(&quot;channelId&quot;);</span><br><span class="line"></span><br><span class="line">// 发送方</span><br><span class="line">bc.postMessage(info: any);</span><br><span class="line">// 接收方</span><br><span class="line">bc.onmessage(function(event)&#123;</span><br><span class="line">  const info = event.data</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>优点: 对传输的数据类型没有要求，使用方便<br>缺点：旧的浏览器不能使用</p>
+<h4 id="方式三：postMessage"><a href="#方式三：postMessage" class="headerlink" title="方式三：postMessage"></a>方式三：postMessage</h4><p>虽然 postMessage 可以实现跨标签通信，但是它还是利用同一个 tab 下的 window 宿主对象实现的。也就是说，消息发送方需要消息接收方的的宿主对象。比如父窗口打开子窗口：那么父窗口通过 window.open 的返回值，子窗口的 window 对象；子窗口直接通过 opener 就可以获取到父窗口的 window 对象。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">cWindow = window.open(url)</span><br><span class="line"></span><br><span class="line">// 父窗口发送</span><br><span class="line">cWindow.postMessage(info, /* 可选域名参数 */)</span><br><span class="line"></span><br><span class="line">// 子窗口接收</span><br><span class="line">window.addEventListener(&#x27;message&#x27;, function(event)&#123;</span><br><span class="line">    // 有必要可以判断来域名来源 event.origin</span><br><span class="line">    const info = event.data</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>优点：数据类型没要求，通信是通过同一个 window 对象实现的，所以对域名没有要求，可以实现跨域通信<br>缺点：需要找到通信方的 window 对象，比较麻烦，特别的多级打开的窗口。</p>
+<h4 id="方式四：SharedWorker-API"><a href="#方式四：SharedWorker-API" class="headerlink" title="方式四：SharedWorker API"></a>方式四：SharedWorker API</h4><p>利用共享的线程实现，类似 BroadcastChannel，它是创建了一个可以跨标签的线程实现的消息传递。创建 SharedWorker 实例时候需要制定 worker 脚本（相同脚本文件参数会创建的是同一个 worker）。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">// 发送接收都需要</span><br><span class="line">const worker = new SharedWorker(&#x27;shareWorker.js&#x27;)</span><br><span class="line"></span><br><span class="line">// 发送方</span><br><span class="line">worker.port.possMessage(&#123;type:&#x27;&#x27;, info: &#x27;&#x27;&#125;)</span><br><span class="line">// 接收方</span><br><span class="line">worker.port.onmessage(function(event)&#123;</span><br><span class="line">  const info = event.data</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">// shareWorker.js</span><br><span class="line">const connections = [];</span><br><span class="line"></span><br><span class="line">onconnect = function (event) &#123;</span><br><span class="line">  var port = event.ports[0];</span><br><span class="line">  connections.push(port);</span><br><span class="line"></span><br><span class="line">  port.onmessage = function (event) &#123;</span><br><span class="line">    connections.forEach(function (conn) &#123;</span><br><span class="line">      if (conn !== port) &#123;</span><br><span class="line">        conn.postMessage(event.data);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  port.start();</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>优点：通信方式更灵活（复杂）<br>缺点：旧的浏览器不能使用，需要额外 woker 脚本</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/07/02/2024/antd-modal-from-error/" rel="prev" title="AntD组件在modal内，Form警告警告情况">
+                  <i class="fa fa-angle-left"></i> AntD组件在modal内，Form警告警告情况
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">xk</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
