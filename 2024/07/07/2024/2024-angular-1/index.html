@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="换项目了，技术栈的用 angular。这技术栈国内并没有国外那么流行，估计框架太重，不太符合国内项目轻量快速迭代的要求。开发理念上来说偏向后端的 OOP 编程方式，前端开发人员并不太感冒。整理个学习笔记，也方便查阅。 组件组件的编写形式，及主要配置，声明周期，继承等">
+<meta property="og:type" content="article">
+<meta property="og:title" content="angular笔记1-组件">
+<meta property="og:url" content="http://example.com/2024/07/07/2024/2024-angular-1/index.html">
+<meta property="og:site_name" content="博客">
+<meta property="og:description" content="换项目了，技术栈的用 angular。这技术栈国内并没有国外那么流行，估计框架太重，不太符合国内项目轻量快速迭代的要求。开发理念上来说偏向后端的 OOP 编程方式，前端开发人员并不太感冒。整理个学习笔记，也方便查阅。 组件组件的编写形式，及主要配置，声明周期，继承等">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-07-07T12:05:06.000Z">
+<meta property="article:modified_time" content="2024-07-08T14:31:47.112Z">
+<meta property="article:author" content="xk">
+<meta property="article:tag" content="angular">
+<meta property="article:tag" content="笔记">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2024/07/07/2024/2024-angular-1/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2024/07/07/2024/2024-angular-1/","path":"2024/07/07/2024/2024-angular-1/","title":"angular笔记1-组件"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>angular笔记1-组件 | 博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%84%E4%BB%B6"><span class="nav-number">1.</span> <span class="nav-text">组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%96%E9%93%BE%E6%A8%A1%E6%9D%BF"><span class="nav-number">2.</span> <span class="nav-text">外链模板</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B0%83%E7%94%A8%E7%9A%84%E7%88%B6%E7%BB%84%E4%BB%B6"><span class="nav-number">3.</span> <span class="nav-text">调用的父组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%96%E9%93%BE%E6%A0%B7%E5%BC%8F"><span class="nav-number">4.</span> <span class="nav-text">外链样式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%A7%E6%89%BF"><span class="nav-number">5.</span> <span class="nav-text">继承</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%87%92%E5%8A%A0%E8%BD%BD"><span class="nav-number">6.</span> <span class="nav-text">懒加载</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">xk</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/07/07/2024/2024-angular-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="xk">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="angular笔记1-组件 | 博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          angular笔记1-组件
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-07-07 20:05:06" itemprop="dateCreated datePublished" datetime="2024-07-07T20:05:06+08:00">2024-07-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-07-08 22:31:47" itemprop="dateModified" datetime="2024-07-08T22:31:47+08:00">2024-07-08</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>换项目了，技术栈的用 angular。这技术栈国内并没有国外那么流行，估计框架太重，不太符合国内项目轻量快速迭代的要求。开发理念上来说偏向后端的 OOP 编程方式，前端开发人员并不太感冒。整理个学习笔记，也方便查阅。</p>
+<h3 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h3><p>组件的编写形式，及主要配置，声明周期，继承等</p>
+<span id="more"></span>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// DemoComp.component.ts</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 装饰器，配置组件元数据</span></span><br><span class="line">@<span class="title class_">Component</span>(&#123;</span><br><span class="line">  <span class="comment">// 独立组件，导入后直接使用； 非独立呢？</span></span><br><span class="line">  <span class="attr">standalone</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="comment">// 组件选择器，决定组件的使用方式；全局唯一，大小写敏感</span></span><br><span class="line">  <span class="comment">// 分类：类型，属性 []，css类 .xx</span></span><br><span class="line">  <span class="attr">selector</span>: <span class="string">&#x27;demo-comp&#x27;</span>,</span><br><span class="line">  <span class="comment">// 导入其他组件， 使用 &lt;other-comp&gt;</span></span><br><span class="line">  <span class="attr">imports</span>: [<span class="title class_">OtherComp</span>],</span><br><span class="line">  <span class="comment">// 指定html模板</span></span><br><span class="line">  <span class="attr">templateUrl</span>: <span class="string">&#x27;DemoComp.component.html&#x27;</span>,</span><br><span class="line">  <span class="attr">template</span>: <span class="string">`</span></span><br><span class="line"><span class="string">    &lt;p&gt;demo&lt;/p&gt;</span></span><br><span class="line"><span class="string">  `</span>,</span><br><span class="line">  <span class="comment">// 指定样式</span></span><br><span class="line">  <span class="attr">stylesUrl</span>: <span class="string">&#x27;DemoComp.component.css&#x27;</span>,</span><br><span class="line">  <span class="attr">styles</span>: <span class="string">`</span></span><br><span class="line"><span class="string">    p &#123;color: &quot;red&quot;&#125;</span></span><br><span class="line"><span class="string">  `</span>,</span><br><span class="line">  <span class="comment">// 决定组件样式作用域，可选值Emulated、 ShadowDom 和 None</span></span><br><span class="line">  <span class="comment">// 默认Emulated，自己独立，受全局影响；ShadowDom完全独立；None认为是全局的</span></span><br><span class="line">  <span class="attr">encapsulation</span>: <span class="title class_">ViewEncapsulation</span>.<span class="property">None</span>，</span><br><span class="line">  <span class="comment">// 组件接收的输入参数，用于继承</span></span><br><span class="line">  <span class="attr">inputs</span>: [<span class="string">&#x27;value&#x27;</span>],</span><br><span class="line">  <span class="comment">// 指定输出(一般是方法)，用于继承</span></span><br><span class="line">  <span class="attr">outputs</span>: [<span class="string">&#x27;panelClosed&#x27;</span>],</span><br><span class="line">  <span class="comment">// 绑定到宿主元素，同在组件上绑定。如果有冲突则有处理规则</span></span><br><span class="line">  <span class="comment">// 都是静态则host优先，动态静态则动态优先，都是动态则宿主组件绑定优先</span></span><br><span class="line">  <span class="attr">host</span>: &#123;</span><br><span class="line">    <span class="string">&#x27;role&#x27;</span>: <span class="string">&#x27;slider&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;[attr.aria-valuenow]&#x27;</span>: <span class="string">&#x27;value&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;[tabIndex]&#x27;</span>: <span class="string">&#x27;disabled ? -1 : 0&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;(keydown)&#x27;</span>: <span class="string">&#x27;updateValue($event)&#x27;</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 组件检查更新策略，默认交互，网络，定时器等</span></span><br><span class="line">  <span class="comment">//  ChangeDetectionStrategy.OnPush，绑定值，监听事件</span></span><br><span class="line">  changeDetection： <span class="title class_">ChangeDetectionStrategy</span>.<span class="property">OnPush</span>,</span><br><span class="line">  <span class="comment">// 模板空白是否清除</span></span><br><span class="line">  <span class="title class_">PreserveWhitespace</span>: <span class="literal">true</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> <span class="title class_">DemoComp</span> &#123;</span><br><span class="line">  <span class="comment">// 定义动态数据 和 方法，使用配合查看html</span></span><br><span class="line">  name = <span class="string">&#x27;comp&#x27;</span>;</span><br><span class="line">  disabled = <span class="literal">false</span>;</span><br><span class="line">  testId = <span class="string">&#x27;123&#x27;</span>;</span><br><span class="line">  isAdmin = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 可接收组件的输入参数; 必填，输入转换</span></span><br><span class="line">  <span class="comment">// trFun需要是纯函数, alias别名（组件调用参数别名）</span></span><br><span class="line">  <span class="comment">// 不建议getter/setter方法</span></span><br><span class="line">  @<span class="title class_">Input</span>(&#123;<span class="attr">required</span>: <span class="literal">true</span>, <span class="attr">transform</span>: trFun， <span class="attr">alias</span>: nName&#125;) value = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 装饰器来定义自定义事件，组件使用处方法； 配合EventEmitter</span></span><br><span class="line">  <span class="comment">// 通过 this.panelClosed.emit(params) 触发父组件调用处绑定的事件</span></span><br><span class="line">  <span class="comment">// 将推出ouput函数，更推荐</span></span><br><span class="line">  @<span class="title class_">Output</span>(<span class="string">&#x27;reName&#x27;</span>) panelClosed = <span class="keyword">new</span> <span class="title class_">EventEmitter</span>&lt;<span class="keyword">void</span>&gt;();</span><br><span class="line"></span><br><span class="line">  ingredientList = [</span><br><span class="line">    &#123;<span class="attr">name</span>: <span class="string">&#x27;noodles&#x27;</span>, <span class="attr">quantity</span>: <span class="number">1</span>&#125;,</span><br><span class="line">    &#123;<span class="attr">name</span>: <span class="string">&#x27;miso broth&#x27;</span>, <span class="attr">quantity</span>: <span class="number">2</span>&#125;,</span><br><span class="line">  ];</span><br><span class="line"></span><br><span class="line">  <span class="title function_">updateName</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">name</span> = ‘yy’</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 生命周期</span></span><br><span class="line">  <span class="comment">// 初始化</span></span><br><span class="line">  <span class="title function_">ngOnInit</span>(<span class="params"></span>) &#123;&#125;</span><br><span class="line">  <span class="comment">// 第一次change，在Init前</span></span><br><span class="line">  <span class="title function_">ngOnChange</span>(<span class="params">changes: SimpleChanges</span>) &#123;&#125;</span><br><span class="line">  <span class="comment">// 组件销毁，不再显示</span></span><br><span class="line">  <span class="comment">// DestroyRef 可以注入，传递给其他组件做销毁处理</span></span><br><span class="line">  <span class="title function_">ngOnDestory</span>(<span class="params"></span>) &#123;&#125;</span><br><span class="line">  <span class="comment">// 每次检查组件模板变化之前，第一次执行在Init之后</span></span><br><span class="line">  <span class="title function_">onDoCheck</span>(<span class="params"></span>) &#123;&#125;</span><br><span class="line">  <span class="comment">// 所有子元素初始化后运行</span></span><br><span class="line">  <span class="title function_">onAfterViewInit</span>(<span class="params"></span>) &#123;&#125;</span><br><span class="line">  <span class="comment">// 所有内嵌子元素初始化后运行</span></span><br><span class="line">  <span class="title function_">onAfterContentInit</span>(<span class="params"></span>) &#123;&#125;</span><br><span class="line">  <span class="comment">// 每次所有子元素检查后运行，有性能影响</span></span><br><span class="line">  <span class="title function_">onAfterViewChecked</span>(<span class="params"></span>) &#123;&#125;</span><br><span class="line">  <span class="comment">// 每次所有内嵌子元素检查后运行，有性能影响</span></span><br><span class="line">  <span class="title function_">onAfterContentChecked</span>(<span class="params"></span>) &#123;&#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params">elementRef: ElementRef</span>) &#123;</span><br><span class="line">     <span class="comment">// 组件渲染Dom后调用，需要注入; 读写阶段优先</span></span><br><span class="line">    <span class="title function_">afterRender</span>(callback, &#123;<span class="attr">phase</span>: <span class="title class_">AfterRenderPhase</span>.<span class="property">Write</span>&#125;)</span><br><span class="line">    <span class="title function_">afterNextRender</span>(callback, &#123;<span class="attr">phase</span>: <span class="title class_">AfterRenderPhase</span>.<span class="property">Read</span>&#125;)</span><br><span class="line">    <span class="comment">// 获取dom引用，只在afterRender操作dom</span></span><br><span class="line">    <span class="keyword">const</span> ele = elementRef.<span class="property">nativeElement</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="外链模板"><a href="#外链模板" class="headerlink" title="外链模板"></a>外链模板</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- DemoComp.component.html --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 可使用样式标签  --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 动态内容指定 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>demo &#123;&#123;name&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 动态属性需要通过 [] 指定 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> [<span class="attr">disabled</span>]=<span class="string">&quot;disabled&quot;</span> /&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 非dom标准动态属性需要 attr 前缀 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> [<span class="attr">attr.data-test-id</span>]=<span class="string">&quot;testId&quot;</span>&gt;</span>attr data<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 绑定事件 () 指定 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> (<span class="attr">click</span>)=<span class="string">&quot;updateName($event)&quot;</span>&gt;</span>changeName<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 条件渲染 --&gt;</span></span><br><span class="line">@if (isAdmin) &#123;</span><br><span class="line"><span class="tag">&lt;<span class="name">button</span>&gt;</span>Erase database<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">&#125; @else &#123;</span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>You are not authorized.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">&lt;!-- 循环渲染， 带track指定唯一性值，类似key --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">  @for (ingredient of ingredientList; track ingredient.name) &#123;</span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>&#123;&#123; ingredient.quantity &#125;&#125; - &#123;&#123; ingredient.name &#125;&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- slot占位，由父组件决定； 多个时候select，ngProjectAs（只能静态）指定 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">ng-content</span> <span class="attr">select</span>=<span class="string">&quot;card-title&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">ng-content</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">ng-content</span> <span class="attr">ngProjectAs</span>=<span class="string">&quot;card-body&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="调用的父组件"><a href="#调用的父组件" class="headerlink" title="调用的父组件"></a>调用的父组件</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">@<span class="title class_">Component</span>(&#123;</span><br><span class="line">  <span class="attr">standalone</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="attr">selector</span>: <span class="string">&#x27;parent-comp&#x27;</span>,</span><br><span class="line">  <span class="attr">template</span>: <span class="string">`</span></span><br><span class="line"><span class="string">    &lt;demo-comp (panelClosed)=&quot;fun()&quot; nName=&quot;name from parent&quot; role=“actor”&gt;</span></span><br><span class="line"><span class="string">      &lt;p&gt;替换默认位置，不带select的&lt;/p&gt;</span></span><br><span class="line"><span class="string">      &lt;card-title&gt;xxxxxx&lt;/card-titile&gt;</span></span><br><span class="line"><span class="string">      &lt;card-body&gt;yyyyy&lt;/card-body&gt;</span></span><br><span class="line"><span class="string">    &lt;/demo-comp&gt;</span></span><br><span class="line"><span class="string">  `</span>,</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> <span class="title class_">DemoComp</span> &#123;</span><br><span class="line">  <span class="comment">// 查询第一个参数是定位器：dom，指令，组件，template，web component</span></span><br><span class="line">  <span class="comment">// 视图查询 利用this.demo可以调用查询到的子组件信息</span></span><br><span class="line">  @<span class="title class_">ViewChild</span>(<span class="title class_">DemoComp</span>，&#123;</span><br><span class="line">    <span class="attr">static</span>: <span class="literal">true</span>，<span class="comment">// 存在且不是条件渲染</span></span><br><span class="line">    descendants：<span class="literal">true</span>，<span class="comment">// 默认查一层子元素，可以设置true查询多层，单不会穿透自身模板</span></span><br><span class="line">    <span class="attr">read</span>: <span class="title class_">TemplateRef</span>， <span class="comment">// 读取特定值</span></span><br><span class="line">  &#125;) <span class="attr">demo</span>: <span class="title class_">DemoComp</span></span><br><span class="line">  @<span class="title class_">ViewChildren</span>(<span class="title class_">DemoComp</span>) <span class="attr">demos</span>: <span class="title class_">QueryList</span>&lt;<span class="title class_">DemoComp</span>&gt;</span><br><span class="line">  <span class="comment">// 内容查询（嵌入内容）</span></span><br><span class="line">  @<span class="title class_">ContentChild</span>(<span class="title class_">DemoComp</span>) <span class="attr">demo</span>: <span class="title class_">DemoComp</span></span><br><span class="line">  @<span class="title class_">ContentChildren</span>(<span class="title class_">DemoComp</span>) <span class="attr">demos</span>: <span class="title class_">QueryList</span>&lt;<span class="title class_">DemoComp</span>&gt;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">fun</span>(<span class="params"></span>)&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="外链样式"><a href="#外链样式" class="headerlink" title="外链样式"></a>外链样式</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* DemoComp.component.css */</span></span><br><span class="line"><span class="selector-tag">p</span> &#123;</span><br><span class="line">  <span class="attribute">background</span>: <span class="string">&quot;red&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">@<span class="title class_">Component</span>(&#123;</span><br><span class="line">  <span class="attr">selector</span>: <span class="string">&#x27;base-listbox&#x27;</span>,<span class="comment">// 被覆盖</span></span><br><span class="line">  <span class="attr">template</span>: <span class="string">` ...`</span>, <span class="comment">// 被覆盖</span></span><br><span class="line">  <span class="attr">host</span>: &#123;</span><br><span class="line">  <span class="string">&#x27;(keydown)&#x27;</span>: <span class="string">&#x27;handleKey($event)&#x27;</span>, <span class="comment">// 被继承</span></span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> <span class="title class_">ListboxBase</span> &#123;</span><br><span class="line">  @<span class="title class_">Input</span>() <span class="attr">value</span>: string; <span class="comment">// 被继承</span></span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params">private element: ElementRef</span>) &#123; &#125;</span><br><span class="line">  <span class="title function_">handleKey</span>(<span class="params">event: KeyboardEvent</span>) &#123;&#125;</span><br><span class="line">  <span class="title function_">onInit</span>(<span class="params"></span>) &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@<span class="title class_">Component</span>(&#123;</span><br><span class="line">  <span class="attr">selector</span>: <span class="string">&#x27;custom-listbox&#x27;</span>,</span><br><span class="line">  <span class="attr">template</span>: <span class="string">`...`</span>,</span><br><span class="line">  <span class="attr">host</span>: &#123;</span><br><span class="line">  <span class="string">&#x27;(click)&#x27;</span>: <span class="string">&#x27;focusActiveOption()&#x27;</span>,</span><br><span class="line">&#125;,</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> <span class="title class_">CustomListbox</span> <span class="keyword">extends</span> <span class="title class_ inherited__">ListboxBase</span> &#123;</span><br><span class="line">  @<span class="title class_">Input</span>() disabled = <span class="literal">false</span>;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params">element: ElementRef</span>) &#123;</span><br><span class="line">    <span class="variable language_">super</span>(element); <span class="comment">// 继承父类注入</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="title function_">focusActiveOption</span>(<span class="params"></span>) &#123;&#125;</span><br><span class="line">  override <span class="title function_">onInit</span>(<span class="params"></span>) &#123; <span class="comment">// 重写声明周期方法</span></span><br><span class="line">  <span class="variable language_">super</span>.<span class="title function_">onInit</span>()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="懒加载"><a href="#懒加载" class="headerlink" title="懒加载"></a>懒加载</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">@<span class="title class_">Component</span>(&#123;</span><br><span class="line">  <span class="attr">template</span>: <span class="string">` &lt;section&gt;</span></span><br><span class="line"><span class="string">      &lt;h2&gt;Basic settings&lt;/h2&gt;</span></span><br><span class="line"><span class="string">      &lt;basic-settings /&gt;</span></span><br><span class="line"><span class="string">    &lt;/section&gt;</span></span><br><span class="line"><span class="string">    &lt;section&gt;</span></span><br><span class="line"><span class="string">      &lt;h2&gt;Advanced settings&lt;/h2&gt;</span></span><br><span class="line"><span class="string">      &lt;button (click)=&quot;loadAdvanced()&quot; *ngIf=&quot;!advancedSettings&quot;&gt;</span></span><br><span class="line"><span class="string">        Load advanced settings</span></span><br><span class="line"><span class="string">      &lt;/button&gt;</span></span><br><span class="line"><span class="string">      &lt;ng-container *ngComponentOutlet=&quot;advancedSettings&quot; /&gt;</span></span><br><span class="line"><span class="string">    &lt;/section&gt;`</span>,</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> <span class="title class_">AdminSettings</span> &#123;</span><br><span class="line">  <span class="attr">advancedSettings</span>: &#123; <span class="title function_">new</span>(): <span class="title class_">AdminSettings</span> &#125; | <span class="literal">undefined</span>;</span><br><span class="line">  <span class="keyword">async</span> <span class="title function_">loadAdvanced</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">advancedSettings</span> = <span class="keyword">await</span> <span class="keyword">import</span>(<span class="string">&quot;path/to/advanced_settings.js&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/angular/" rel="tag"># angular</a>
+              <a href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag"># 笔记</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/07/03/2024/communication-between-tabs/" rel="prev" title="浏览器同域跨标签页通信">
+                  <i class="fa fa-angle-left"></i> 浏览器同域跨标签页通信
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2024/07/08/2024/angualr-2/" rel="next" title="angular笔记2-模板语法">
+                  angular笔记2-模板语法 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">xk</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
