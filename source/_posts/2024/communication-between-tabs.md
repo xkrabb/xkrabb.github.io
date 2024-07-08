@@ -28,6 +28,7 @@ function receiveMsg(callback: (info:string) => void) {
 ```
 
 优点：简单；接收方离线，消息不丢失，接收方上线后可以决定是否处理消息
+
 缺点：使用大小有限制 5m（也不是什么大问题），stroage 只能放字符串，所以消息存之前需要序列化
 
 #### 方式二：BroadcastChannel
@@ -47,6 +48,7 @@ bc.onmessage(function(event){
 ```
 
 优点: 对传输的数据类型没有要求，使用方便
+
 缺点：旧的浏览器不能使用
 
 #### 方式三：postMessage
@@ -67,6 +69,7 @@ window.addEventListener('message', function(event){
 ```
 
 优点：数据类型没要求，通信是通过同一个 window 对象实现的，所以对域名没有要求，可以实现跨域通信
+
 缺点：需要找到通信方的 window 对象，比较麻烦，特别的多级打开的窗口。
 
 #### 方式四：SharedWorker API
@@ -104,4 +107,5 @@ onconnect = function (event) {
 ```
 
 优点：通信方式更灵活（复杂）
+
 缺点：旧的浏览器不能使用，需要额外 woker 脚本
